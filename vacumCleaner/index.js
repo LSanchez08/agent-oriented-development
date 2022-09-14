@@ -42,5 +42,5 @@ const main = (size) => {
 };
 
 
-main(3);
+main(2);
 
