@@ -101,7 +101,7 @@ class VacumCleaner {
     if (!location.exitedDirections.includes(moveTo[this.direction])) {
       location.exitedDirections.push(moveTo[this.direction]);
     }
-    if (location.exitedDirections === 2) {
+    if ((location.exitedDirections.length + location.notPossibleDirection.length) === 4) {
       location.exitedDirections = [];
     }
     // if (this.x == 0 && this.y == 0) {
