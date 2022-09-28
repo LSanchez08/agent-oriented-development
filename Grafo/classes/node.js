@@ -5,3 +5,5 @@ class Node {
 		this.name = name
 	}
 }
+
+module.exports = Node;
