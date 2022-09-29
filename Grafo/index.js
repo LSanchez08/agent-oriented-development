@@ -10,7 +10,7 @@ const grafo = enviroment;
 
 
 const main = () => {
-  const agent = new Agent(14, grafo, 0, 12)
+  const agent = new Agent(9, grafo, 0, 6)
   console.log(agent.startPath())
 };
 

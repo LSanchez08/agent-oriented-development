@@ -22,11 +22,7 @@ class Agent {
   }
 
   calculatePath(visited, cost, currentIndex, destination) {
-    this.loopCounter += 1
-    // if (this.loopCounter > 200) {
-      
-    //   return { visited, cost, currentIndex, destination };
-    // }
+    this.currentNode = currentIndex;
     const currentNode = this.getCurrentNode(currentIndex);
     if (destination === currentNode.name) {
       if (!this.bestPath.movements.length) {
@@ -48,9 +44,10 @@ class Agent {
     const { adjecent } = currentNode;
     for (let i = 0; i < adjecent.length; i++) {
       const newExit = adjecent[i];
-      if (currentIndex === 0) {
-        console.log({ newExit, visited })
+      if (currentIndex === 16) {
+        
       }
+      // console.log({newExit})
       if (!visited.includes(newExit.label)) {
         this.calculatePath([...visited, newExit.label], cost + newExit.value, newExit.label, destination);
       }
