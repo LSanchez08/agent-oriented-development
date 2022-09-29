@@ -30,14 +30,24 @@ class Agent {
           movements: visited,
           cost
         };
+        console.log({ end: {
+          movements: this.bestPath.movements.map((node) => this.getCurrentNode(node).name),
+          cost: this.bestPath.cost
+        } });
       } else {
         if (this.bestPath.cost > cost) {
           this.bestPath = {
             movements: visited,
             cost
           };
+          console.log({ end: {
+            movements: this.bestPath.movements.map((node) => this.getCurrentNode(node).name),
+            cost: this.bestPath.cost
+          } });
         }
       }
+
+      
 
       return;
     }
