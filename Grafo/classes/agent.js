@@ -6,7 +6,7 @@ class Agent {
     this.goalNode = goalNode; // Performance Measure
     this.bestPath = { movements: [], cost: 0 };
     this.Sensor = new Sensor(enviroment);
-    this.loopCounter = 0;
+    this.ended = 0;
   }
 
   move(newNode) {
@@ -30,7 +30,7 @@ class Agent {
           movements: visited,
           cost
         };
-        console.log({ end: {
+        console.log({ [`Finished ${this.ended += 1}`]: {
           movements: this.bestPath.movements.map((node) => this.getCurrentNode(node).name),
           cost: this.bestPath.cost
         } });
@@ -40,7 +40,7 @@ class Agent {
             movements: visited,
             cost
           };
-          console.log({ end: {
+          console.log({ [`Finished ${this.ended += 1}`]: {
             movements: this.bestPath.movements.map((node) => this.getCurrentNode(node).name),
             cost: this.bestPath.cost
           } });
@@ -69,6 +69,7 @@ class Agent {
   startPath() {
     const result = this.calculatePath([this.currentNode], 0, this.currentNode, this.getCurrentNode(this.goalNode).name);
     result.movements = result.movements.map((node) => this.getCurrentNode(node).name);
+    
     return result;
   }
 

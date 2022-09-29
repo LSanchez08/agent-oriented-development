@@ -9,9 +9,9 @@ const grafo = enviroment;
 //! Sensores
 
 
-const main = () => {
-  const agent = new Agent(9, grafo, 0, 6)
-  console.log({final: agent.startPath()})
+const main = (start, end) => {
+  const agent = new Agent(start, grafo, 0, end)
+  console.log({'True end': agent.startPath()})
 };
 
-main();
+main(12, 2);
