@@ -10,17 +10,15 @@ class Sensor {
 
   getExit (visited, index) {
     const { adjecent } = this.getCurrentNode(index)
-    const newNode = adjecent.reduce((acc, element) => {
-      if (!visited.includes(element.label)) {
-        const accNode = adjecent[acc];
+    let current = 0
+    let newNodeIndex = adjecent[current].label;
+    while (visited.includes(newNodeIndex)) {
+      current += 1;
+      newNodeIndex = current < adjecent.length ? adjecent[current].label : -1;
+    }
 
-        return accNode.value > element.value ? element.label : acc;
-      } else {
-        return acc;
-      }
-    }, adjecent[0].label);
 
-    return newNode;
+    return newNodeIndex;
   }
 }
 

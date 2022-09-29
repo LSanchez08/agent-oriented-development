@@ -1,15 +1,68 @@
-
+const Sensor = require('./Sensor');
 class Agent {
   constructor(index, enviroment, acumulativeCost, goalNode) {
     this.currentNode = index; // Sensor de Nodo Actual y Adyacentes
     this.acumulativeCost = acumulativeCost // Sensor de costos
-    this.enviroment = enviroment; // Sensor del estado del ambiente
     this.goalNode = goalNode; // Performance Measure
     this.bestPath = { movements: [], cost: 0 };
+    this.Sensor = new Sensor(enviroment);
+    this.loopCounter = 0;
   }
 
   move(newNode) {
     this.currentNode = newNode
+  }
+
+  getCurrentNode(index = this.currentNode) {
+    return this.Sensor.getCurrentNode(index);
+  }
+
+  exit(visited) {
+    return this.Sensor.getExit(visited, this.currentNode);
+  }
+
+  calculatePath(visited, cost, currentIndex, destination) {
+    this.loopCounter += 1
+    // if (this.loopCounter > 200) {
+      
+    //   return { visited, cost, currentIndex, destination };
+    // }
+    const currentNode = this.getCurrentNode(currentIndex);
+    if (destination === currentNode.name) {
+      if (!this.bestPath.movements.length) {
+        this.bestPath = {
+          movements: visited,
+          cost
+        };
+      } else {
+        if (this.bestPath.cost > cost) {
+          this.bestPath = {
+            movements: visited,
+            cost
+          };
+        }
+      }
+
+      return;
+    }
+    const { adjecent } = currentNode;
+    for (let i = 0; i < adjecent.length; i++) {
+      const newExit = adjecent[i];
+      if (currentIndex === 0) {
+        console.log({ newExit, visited })
+      }
+      if (!visited.includes(newExit.label)) {
+        this.calculatePath([...visited, newExit.label], cost + newExit.value, newExit.label, destination);
+      }
+    }
+    
+    return this.bestPath;
+  }
+
+  startPath() {
+    const result = this.calculatePath([this.currentNode], 0, this.currentNode, this.getCurrentNode(this.goalNode).name);
+    result.movements = result.movements.map((node) => this.getCurrentNode(node).name);
+    return result;
   }
 
 }
