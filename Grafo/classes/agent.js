@@ -2,9 +2,8 @@ const Sensor = require('./Sensor');
 class Agent {
   constructor(index, enviroment, acumulativeCost, goalNode) {
     this.currentNode = index; // Sensor de Nodo Actual y Adyacentes
-    this.acumulativeCost = acumulativeCost // Sensor de costos
     this.goalNode = goalNode; // Performance Measure
-    this.bestPath = { movements: [], cost: 0 };
+    this.bestPath = { movements: [], cost: acumulativeCost };
     this.Sensor = new Sensor(enviroment);
     this.ended = 0;
   }
@@ -47,17 +46,12 @@ class Agent {
         }
       }
 
-      
-
       return;
     }
     const { adjecent } = currentNode;
     for (let i = 0; i < adjecent.length; i++) {
       const newExit = adjecent[i];
-      if (currentIndex === 16) {
-        
-      }
-      // console.log({newExit})
+
       if (!visited.includes(newExit.label)) {
         this.calculatePath([...visited, newExit.label], cost + newExit.value, newExit.label, destination);
       }
@@ -69,7 +63,7 @@ class Agent {
   startPath() {
     const result = this.calculatePath([this.currentNode], 0, this.currentNode, this.getCurrentNode(this.goalNode).name);
     result.movements = result.movements.map((node) => this.getCurrentNode(node).name);
-    
+
     return result;
   }
 
