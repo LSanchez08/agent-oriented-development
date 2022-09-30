@@ -9,4 +9,4 @@ const main = (start, end) => {
   console.log({'True end': agent.startPath()});
 };
 
-main(8, 0);
+main(16, 11);

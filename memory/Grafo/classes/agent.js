@@ -68,10 +68,12 @@ class Agent {
     const newEntry = `${this.currentNode}-${this.goalNode}`;
     const reverse = `${this.goalNode}-${this.currentNode}`;
     if (this.memory[newEntry]) {
-      console.log('No calculation required. Result in memory')
+      console.log('No calculation required. Result in memory');
+      
       return this.memory[newEntry];
     } else if (this.memory[reverse]) {
-      console.log('No calculation required. Result in memory')
+      console.log('No calculation required. Result in memory');
+
       return {
         movements: this.memory[reverse].movements.reverse(),
         cost: this.memory[reverse].cost
