@@ -66,9 +66,16 @@ class Agent {
 
   startPath() {
     const newEntry = `${this.currentNode}-${this.goalNode}`;
+    const reverse = `${this.goalNode}-${this.currentNode}`;
     if (this.memory[newEntry]) {
       console.log('No calculation required. Result in memory')
       return this.memory[newEntry];
+    } else if (this.memory[reverse]) {
+      console.log('No calculation required. Result in memory')
+      return {
+        movements: this.memory[reverse].movements.reverse(),
+        cost: this.memory[reverse].cost
+      };
     }
     this.calculatePath([this.currentNode], this.bestPath.cost, this.currentNode, this.getCurrentNode(this.goalNode).name);
     const result = { 
