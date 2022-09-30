@@ -10,7 +10,7 @@ const main = (start, end) => {
 };
 
 try {
-  main(11, 16); // Solo valores 0 -> 19
+  main(7, 5); // Solo valores 0 -> 19
 } catch (error) {
   console.log('¿Qué haces bobo? Sigue mis reglas!');
 }
