@@ -12,4 +12,4 @@ const main = (start, end) => {
   console.log({'True end': agent.startPath()})
 };
 
-main(12, 2);
+main(16, 0);

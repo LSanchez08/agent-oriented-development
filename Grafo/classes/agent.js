@@ -61,8 +61,11 @@ class Agent {
   }
 
   startPath() {
-    const result = this.calculatePath([this.currentNode], 0, this.currentNode, this.getCurrentNode(this.goalNode).name);
-    result.movements = result.movements.map((node) => this.getCurrentNode(node).name);
+    this.calculatePath([this.currentNode], 0, this.currentNode, this.getCurrentNode(this.goalNode).name);
+    const result = { 
+      movements: this.bestPath.movements.map((node) => this.getCurrentNode(node).name),
+      cost: this.bestPath.cost
+    };
 
     return result;
   }
