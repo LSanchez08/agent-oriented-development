@@ -9,7 +9,7 @@ class Agent {
   }
 
   move(newNode) {
-    this.currentNode = newNode
+    this.currentNode = newNode;
   }
 
   getCurrentNode(index = this.currentNode) {
@@ -21,7 +21,7 @@ class Agent {
   }
 
   calculatePath(visited, cost, currentIndex, destination) {
-    this.currentNode = currentIndex;
+    this.move(currentIndex);
     const currentNode = this.getCurrentNode(currentIndex);
     if (destination === currentNode.name) {
       if (!this.bestPath.movements.length) {
@@ -61,7 +61,7 @@ class Agent {
   }
 
   startPath() {
-    this.calculatePath([this.currentNode], 0, this.currentNode, this.getCurrentNode(this.goalNode).name);
+    this.calculatePath([this.currentNode], this.bestPath.cost, this.currentNode, this.getCurrentNode(this.goalNode).name);
     const result = { 
       movements: this.bestPath.movements.map((node) => this.getCurrentNode(node).name),
       cost: this.bestPath.cost
