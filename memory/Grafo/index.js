@@ -9,4 +9,10 @@ const main = (start, end) => {
   console.log({'True end': agent.startPath()});
 };
 
-main(16, 11);
+try {
+  main(11, 16); // Solo valores 0 -> 19
+} catch (error) {
+  console.log('¿Qué haces bobo? Sigue mis reglas!');
+}
+
+
